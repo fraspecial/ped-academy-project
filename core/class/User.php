@@ -11,7 +11,7 @@ class User {
         $this->name=$name;
         $this->surname=$surname;
         $this->email=$email;
-        $this->$password=$password;
+        $this->password=$password;
     }
 
     public function getName(){

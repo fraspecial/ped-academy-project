@@ -6,19 +6,23 @@ ini_set("display_errors", 1);
 const E_MAIL = "francescospeciale@gmail.com";
 const PASSWORD = "$2y$10$/S.QfrUFIQfEmUdeQeTxUu.FSbfRWybUDvE/FNxdp1vWZu.pgH3s2";
 
-$GLOBALS['err'] = false;
+$GLOBALS['err-login'] = false;
 
 function verifyUser()
 {
     try {
         $pdo = new PDO('mysql:host=localhost;dbname=blog', 'root', 'root');
-        $statement = $pdo->prepare("SELECT count(*) from `user` where `email`= :email and `password`=:password");
-        $statement->bindParam(':email', $_POST['email'], ':password', $_POST['password']);
+        $statement = $pdo->prepare("SELECT email, `password` from `user` where email=:email");
+        $statement->bindParam(':email', $_POST['email']);
         $statement->execute();
-        if ($statement->fetch() == 1){
+        $items=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if(sizeof($items)==1){
+            if(password_verify($_POST['password'], $items[0]['password']))
             loginUser();
+            else
+            $GLOBALS['err-login']=true;
         }
-        else return false;
 
     } catch (PDOException $e) {
         print ('Error! ' . $e->getMessage()) . '<br/>';
@@ -28,9 +32,8 @@ function verifyUser()
 
 function loginUser(){
     $_SESSION['loggedUser']=$_POST['email'];
-    $GLOBALS['err'] = false;
+    $GLOBALS['err-login'] = false;
     header('Location: index.php');
-    return true;
 }
 
 function isLogged()
@@ -45,7 +48,8 @@ function logoutUser()
 
 
 
-if ($form == 'login')
-    if (isset($_POST['email']) && isset($_POST['password']))
-    verifyUser();
+if(isset($form))
+    if ($form== 'login')
+        if (isset($_POST['email']) && isset($_POST['password']))
+            verifyUser();
 ?>

@@ -1,6 +1,6 @@
 <footer id="footer"> Powered by Francesco Speciale - PED Academy</footer>
 
-<div class="modal fade <?php if ($GLOBALS['err']) echo "failed"; ?>" id="login" tabindex="-1" role="dialog" data-show="true" aria-labelledby="loginTitle" aria-hidden="true">
+<div class="modal fade <?php if ($GLOBALS['err-login']) echo "failed"; ?>" id="login" tabindex="-1" role="dialog" data-show="true" aria-labelledby="loginTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header border-bottom-0">
@@ -9,11 +9,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php if ($GLOBALS['err']) { ?>
+            <?php if ($GLOBALS['err-login']) { ?>
                 <div class="alert alert-danger text-center"><?php echo "Login failed! Invalid email or password!"; ?></div>
             <?php } ?>
 
-            <form id="login-form" action="core/login-handler.php" method="post" class="needs-validation" novalidate>
+            <form id="login-form" action="" method="post" class="needs-validation" novalidate>
                 <div class="modal-body">
                     <div class="form-row">
                         <label for="e-mail">E-mail:</label>
@@ -38,7 +38,7 @@
     </div>
 </div>
 
-<div class="modal fade <?php if ($GLOBALS['err']) echo "failed"; ?>" id="signup" tabindex="-1" role="dialog" data-show="true" aria-labelledby="signupTitle" aria-hidden="true">
+<div class="modal fade <?php if ($GLOBALS['err-signup']) echo "failed"; ?>" id="signup" tabindex="-1" role="dialog" data-show="true" aria-labelledby="signupTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header border-bottom-0">
@@ -47,11 +47,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php if ($GLOBALS['err']) { ?>
+            <?php if ($GLOBALS['err-signup']) { ?>
                 <div class="alert alert-danger text-center"><?php echo "Signup failed! Invalid email or password!"; ?></div>
             <?php } ?>
 
-            <form id="signup-form" action="core/signup-handler.php" method="post" class="needs-validation" novalidate>
+            <form id="signup-form" action="" method="post" class="needs-validation" novalidate>
                 <div class="modal-body">
                     <div class="form-row">
                         <div class="col-6">
