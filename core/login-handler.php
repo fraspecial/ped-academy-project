@@ -1,42 +1,51 @@
 <?php
 
-const E_MAIL="francescospeciale@gmail.com";
-const PASSWORD="$2y$10$/S.QfrUFIQfEmUdeQeTxUu.FSbfRWybUDvE/FNxdp1vWZu.pgH3s2";
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
-$GLOBALS['err']=false;
+const E_MAIL = "francescospeciale@gmail.com";
+const PASSWORD = "$2y$10$/S.QfrUFIQfEmUdeQeTxUu.FSbfRWybUDvE/FNxdp1vWZu.pgH3s2";
 
-function verifyEmail($email){
-    return ($email===E_MAIL);
+$GLOBALS['err'] = false;
+
+function verifyUser()
+{
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=blog', 'root', 'root');
+        $statement = $pdo->prepare("SELECT count(*) from `user` where `email`= :email and `password`=:password");
+        $statement->bindParam(':email', $_POST['email'], ':password', $_POST['password']);
+        $statement->execute();
+        if ($statement->fetch() == 1){
+            loginUser();
+        }
+        else return false;
+
+    } catch (PDOException $e) {
+        print ('Error! ' . $e->getMessage()) . '<br/>';
+        die();
+    }
 }
 
-function verifyPassword($password){
-    return (password_verify($password, PASSWORD));
-}
-
-function loginUser($email, $password){
-    if (verifyEmail($email) && verifyPassword($password)){
-    $_SESSION['loggedUser']=$email;
+function loginUser(){
+    $_SESSION['loggedUser']=$_POST['email'];
+    $GLOBALS['err'] = false;
+    header('Location: index.php');
     return true;
-    }
-    else{
-    $GLOBALS['err']=true;
-    return false;
-    }
 }
-                                                                                                                                                                                                                                                                                                 
-function isLogged(){
+
+function isLogged()
+{
     return isset($_SESSION["loggedUser"]);
 }
 
-function logoutUser(){
+function logoutUser()
+{
     unset($_SESSION['loggedUser']);
 }
 
-if(isset($_POST['email']) && isset($_POST['password']))
-    if(loginUser($_POST['email'], $_POST['password'])){
-        $GLOBALS['err']=false;
-        header('Location: index.php');
-    }
-    
 
+
+if ($form == 'login')
+    if (isset($_POST['email']) && isset($_POST['password']))
+    verifyUser();
 ?>

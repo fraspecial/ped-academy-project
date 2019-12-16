@@ -1,5 +1,4 @@
 <?php
-require 'core/bootstrap.php';
 include_once 'modules/header.php';
 ?>
 <div class="container">

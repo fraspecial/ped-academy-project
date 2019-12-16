@@ -27,6 +27,7 @@
             <?php }
             else { ?>
             <button type="button" class="btn btn-success mr-3" id="login-button">Login</button>
+            <button type="button" class="btn btn-primary mr-3" id="signup-button">Sign Up</button>
             <?php } ?>
         </div>
     </nav>
