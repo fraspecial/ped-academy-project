@@ -5,20 +5,14 @@ ini_set("display_errors", 1);
 
 $GLOBALS['err-signup']=false;
 
-function createUser(){
-    $password=password_hash($_POST['password'], PASSWORD_DEFAULT);
-    print_r("$password <br/>");
-    return new User($_POST['name'], $_POST['surname'], $_POST['email'], $password);
-}
-
 function insertUser($user){
     try{
-        $pdo=new PDO('mysql:host=localhost;dbname=blog','root', 'root');
+        $pdo=connect();
         $statement=$pdo->prepare("INSERT into `user` (first_name, last_name, email, `password`) values (:name, :surname, :email, :password)");
-        $statement->bindParam(':name', $user->getName());
-        $statement->bindParam(':surname', $user->getSurname());
-        $statement->bindParam(':email', $user->getEmail());
-        $statement->bindParam(':password', $user->getPassword());
+        $statement->bindParam(':name', $_POST['name']);
+        $statement->bindParam(':surname', $_POST['surname']);
+        $statement->bindParam(':email', $_POST['email']);
+        $statement->bindParam(':password', password_hash($_POST['password'], PASSWORD_DEFAULT));
         return $statement->execute();
         }
 
@@ -31,7 +25,6 @@ function insertUser($user){
 if(isset($form)){
     if($form =='signup')
         if(isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['password'])){
-            $user=createUser();
             if(insertUser($user))
             loginUser();
             else

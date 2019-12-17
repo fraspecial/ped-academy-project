@@ -4,12 +4,12 @@ require_once 'core/post-repository.php';
 
 
 
-$tag=null;
+/*$tag=null;
 if(!empty($_GET['tag'])){
     $tag=$_GET['tag'];
-}
+}*/
 
-$array=getAllPosts($tag);
+$array=getAllPosts();
 
 include_once 'view/index.php';
 ?>

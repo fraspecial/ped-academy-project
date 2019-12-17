@@ -12,10 +12,10 @@ include_once 'modules/header.php';
         foreach ($array as $post) {
             print_r("
                 <article>
-                <h3>{$post->title}</h3>
-                <p>{$post->content}</p>
+                <h3>{$post->getTitle()}</h3>
+                <p>{$post->getContent()}</p>
                 <footer>Tags: ");
-            foreach ($post->tags as $tag)
+            foreach ($post->getTags() as $tag)
                 print_r("<a href='index.php?tag=$tag'>$tag </a>");
             print_r("</footer>");
             print_r("</article>");

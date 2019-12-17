@@ -1,17 +1,11 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
-const E_MAIL = "francescospeciale@gmail.com";
-const PASSWORD = "$2y$10$/S.QfrUFIQfEmUdeQeTxUu.FSbfRWybUDvE/FNxdp1vWZu.pgH3s2";
-
 $GLOBALS['err-login'] = false;
 
 function verifyUser()
 {
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=blog', 'root', 'root');
+        $pdo = connect();
         $statement = $pdo->prepare("SELECT email, `password` from `user` where email=:email");
         $statement->bindParam(':email', $_POST['email']);
         $statement->execute();
