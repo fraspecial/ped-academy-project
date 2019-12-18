@@ -1,0 +1,54 @@
+html {
+    font-size: 14px;
+    min-height: 100%;
+    position: relative;
+}
+
+.container{
+    margin-bottom: 6rem;
+}
+
+article{
+    margin: 2rem 0;
+}
+
+.login{
+    margin-top: 1rem;
+}
+
+.btn{
+    padding: 0.25rem 2.5rem;
+    margin: 5px;
+}
+
+.card{
+    background-color: rgb(234, 231, 243);
+}
+
+
+form{
+    margin-block-end: 0;
+}
+
+input[type="submit"]{
+    margin-top: 1rem;
+}
+
+.card-body{
+    padding-bottom: 0.75rem;
+}
+
+section{
+    margin: 3rem 0;
+}
+
+#footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    background-color: black;
+    color: white;
+    text-align: center;
+    opacity: 85%;
+}

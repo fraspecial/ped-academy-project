@@ -12,7 +12,7 @@ include_once 'modules/header.php';
                 <p>{$post->getContent()}</p>
                 <footer>Tags: ");
             foreach ($post->getTags() as $tag)
-                print_r("<a class='tag' href=''>$tag </a>");
+                print_r("<a class='tag' href='index.php?tag=$tag'>$tag </a>");
             print_r("</footer>");
             print_r("</article>");
         }
