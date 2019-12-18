@@ -2,7 +2,7 @@
 include_once 'modules/header.php';
 ?>
 <div class="container">
-    <h1>Chi sono</h1>
+    <h1>About</h1>
 
     <section>
         <div class="row">
