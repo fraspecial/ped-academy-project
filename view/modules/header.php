@@ -18,9 +18,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-            <?php if(isset($_SESSION['loggedUser'])){?>
+            <?php //if(isset($_SESSION['loggedUser'])){?>
                 <li class="nav-item"><a class="nav-link active" href="index.php" hreflang="it">Blog<span class="sr-only">(current)</span></a></li>
-            <?php } ?>
+            <?php // } ?>
                 <li class="nav-item"><a class="nav-link" href="about.php" hreflang="it">About</a></li>
             </ul>
             <?php if(isset($_SESSION['loggedUser'])){?>

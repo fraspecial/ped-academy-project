@@ -6,16 +6,20 @@ function connect(){
 
 session_start();
 
+
+if(isset($_POST['form']))
+    $form=$_POST['form'];
+
+
 require 'autoload.php';
 require_once 'login-handler.php';
 require_once 'signup-handler.php';
 
-if(!isLogged())
-header('Location: about.php');
 
 $curLink=basename($_SERVER['SCRIPT_FILENAME']);
 
-if(isset($_POST['form']))
-    $form=$_POST['form'];
+
+/*if(!isLogged() && $curLink != 'http://localhost/mio-progetto/about.php')
+header('Location: about.php');*/
 
 ?>

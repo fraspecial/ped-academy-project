@@ -10,7 +10,7 @@ include_once 'modules/header.php';
                     <form action="index.php" method="post">
                         <div>
                             <label for="title">Titolo:</label>
-                            <input class="form-control" type="text" name="title" id="title">
+                            <input class="form-control" type="text" name="title" id="title" required>
                         </div>
 
                         <div>

@@ -42,8 +42,10 @@ function logoutUser()
 
 
 
-if(isset($form))
-    if ($form== 'login')
+if(isset($form)){
+    if ($form == 'login'){
         if (isset($_POST['email']) && isset($_POST['password']))
             verifyUser();
+    }
+}
 ?>
