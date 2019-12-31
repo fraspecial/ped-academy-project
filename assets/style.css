@@ -8,8 +8,40 @@ html {
     margin-bottom: 6rem;
 }
 
+#login-form, #signup-form{
+    margin-top: 4rem;
+    padding: 1rem;
+    border-radius: 20px;
+    border: 1px solid rgb(194, 192, 201);
+}
+
+#login-form{
+    width: 30%;
+}
+
+
+#signup-form{
+    width: 60%;
+}
+
+.header{
+    justify-content: space-between;
+}
+
+
+.search-tag{
+    margin-top: 5px;
+}
+
 article{
     margin: 2rem 0;
+    border: 1px solid rgb(194, 192, 201);
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+.post-content{
+    margin: 0.7rem 0;
 }
 
 .login{
@@ -42,6 +74,10 @@ section{
     margin: 3rem 0;
 }
 
+.alert{
+    border: none;
+}
+
 #footer{
     position: absolute;
     bottom: 0;
@@ -51,4 +87,28 @@ section{
     color: white;
     text-align: center;
     opacity: 85%;
+}
+
+input[type="search"]{
+    width: 80%;
+}
+
+.carousel-caption{
+    background-color: rgba(161, 158, 158, 0.39);
+    border-radius: 20px 0 0 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+textarea{
+    width: 100%;
+}
+
+svg:hover{
+    color: black;
+}
+
+.hidden{
+    display: none;
 }

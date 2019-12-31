@@ -1,93 +1,56 @@
 <footer id="footer"> Powered by Francesco Speciale - PED Academy</footer>
 
-<div class="modal fade <?php if ($GLOBALS['err-login']) echo "failed"; ?>" id="login" tabindex="-1" role="dialog" data-show="true" aria-labelledby="loginTitle" aria-hidden="true">
+
+<div class="modal fade" id="bio" tabindex="-1" role="dialog" data-show="true" aria-labelledby="bioTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header border-bottom-0">
-                <h5 class="modal-title" id="loginTitle">Login</h5>
+                <h5 class="modal-title" id="bioTitle">Bio</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php if ($GLOBALS['err-login']) { ?>
-                <div class="alert alert-danger text-center"><?php echo "Login failed! Invalid email or password!"; ?></div>
-            <?php } ?>
+            <form action="" method="post">
+            <div class="modal-body">
+                <textarea name="bio" id="" cols="30" rows="10"><?=$user->getBio()?></textarea>
+                <input type="hidden" name="type" value="bio">
+            </div>
 
-            <form id="login-form" action="" method="post" class="needs-validation" novalidate>
-                <div class="modal-body">
-                    <div class="form-row">
-                        <label for="e-mail">E-mail:</label>
-                        <input class="form-control" type="email" name="email" required>
-                        <div class="invalid-feedback">Please choose an email.</div>
-                    </div>
 
-                    <div class="form-row">
-                        <label for="password">Password:</label>
-                        <input class="form-control" type="password" name="password" required>
-                        <div class="invalid-feedback">Please choose a password.</div>
-                    </div>
+            <!--<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Aggiungi post</h5>
+                    <form action="index.php" method="post">
+                        <div>
+                            <label for="title">Titolo:</label>
+                            <input class="form-control" type="text" name="title" id="title" required>
+                        </div>
+
+                        <div>
+                            <label for="content">Contenuto:</label>
+                            <textarea class="form-control" name="content" id="content" cols="30" rows="10" required></textarea>
+                        </div>
+
+                        <div>
+                            <label for="tags">Tags:</label>
+                            <input class="form-control" type="text" name="tags" id="tags">
+                        </div>
+
+                        <div class='d-flex justify-content-center'>
+                            <input class="btn btn-success" type="submit" value="Aggiungi">
+                        </div>
+                    </form>
                 </div>
-
-                <input type="hidden" name="form" value="login">
-
-                <div class="modal-footer border-top-0 justify-content-center">
-                    <input class="login btn btn-success" id="submit" type="submit" value="Login">
-                </div>
-            </form>
+            </div>
         </div>
     </div>
-</div>
-
-<div class="modal fade <?php if ($GLOBALS['err-signup']) echo "failed"; ?>" id="signup" tabindex="-1" role="dialog" data-show="true" aria-labelledby="signupTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header border-bottom-0">
-                <h5 class="modal-title" id="signupTitle">Signup</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+</div> -->
+            <div class='modal-footer border-top-0 justify-content-center'>
+                <input class="btn btn-primary" type="submit" value="Salva">
             </div>
-            <?php if ($GLOBALS['err-signup']) { ?>
-                <div class="alert alert-danger text-center"><?php echo "Signup failed! Invalid email or password!"; ?></div>
-            <?php } ?>
-
-            <form id="signup-form" action="" method="post" class="needs-validation" novalidate>
-                <div class="modal-body">
-                    <div class="form-row">
-                        <div class="col-6">
-                            <label for="name">Nome:</label>
-                            <input class="form-control" type="text" name="name" required>
-                            <div class="invalid-feedback">Please choose a name.</div>
-                        </div>
-
-                        <div class="col-6">
-                            <label for="surname">Cognome:</label>
-                            <input class="form-control" type="text" name="surname" required>
-                            <div class="invalid-feedback">Please choose a surname.</div>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="col-6">
-                            <label for="email">Email:</label>
-                            <input class="form-control" type="email" name="email" required>
-                            <div class="invalid-feedback">Please choose an email.</div>
-                        </div>
-
-                        <div class="col-6">
-                            <label for="password">Password:</label>
-                            <input class="form-control" type="password" name="password" required placeholder="8+ chars with digits and capitals" pattern="(?=.*[A-Z])(?=.*\d)([\S\s]){8,50}">
-                            <div class="invalid-feedback">Please choose a valid password.</div>
-                        </div>
-
-                        <input type="hidden" name="form" value="signup">
-
-                    </div>
-                </div>
-
-                <div class='modal-footer border-top-0 justify-content-center'>
-                    <input class="btn btn-primary" type="submit" value="Sign Up">
-                </div>
             </form>
         </div>
     </div>

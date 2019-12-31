@@ -46,18 +46,22 @@ function getAllPosts(){
         $rows=$pdo->query("SELECT post.id, post.title, post.content, post.creation_date FROM `user` join post on post.user_id=`user`.id where email='" . $_SESSION['loggedUser'] . "'");
         if($rows){
             $posts=$rows->fetchAll(PDO::FETCH_ASSOC);
-            $loaded_posts=[];
+            $post_repository=new PostRepository();
             foreach ($posts as $post){
                 $loaded_post=new Post($post['title'], $post['content'], $post['creation_date']);
                 $rows=$pdo->query("SELECT t.title from tag t join post_tag pt on t.id=pt.tag_id where pt.post_id=". $post['id']);
                 if($rows){
+                    $tagList=new TagList();
                     $tags=$rows->fetchAll(PDO::FETCH_ASSOC);
-                    foreach($tags as $tag)
-                        $loaded_post->setTag($tag['title']);
+                    foreach($tags as $tag){
+                        $loaded_tag=new tag($tag['title']);
+                        $tagList->save($loaded_tag);
+                    }
+                        $loaded_post->setTags($tagList);
                 }
-                $loaded_posts[]=$loaded_post;
+                $post_repository->save($loaded_post);
             }
-            return $loaded_posts;
+            return $post_repository;
         }
     }
 }

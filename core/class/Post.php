@@ -6,12 +6,11 @@ class Post{
     private $creation_date;
     private $tags;
 
-    public function __construct($title, $content, $creation_date, $tags=[])
+    public function __construct($title, $content, $creation_date)
     {
         $this->title=$title;
         $this->content=$content;
         $this->creation_date=$creation_date;
-        $this->tags=$tags;
     }
 
     public function getTitle(){
@@ -30,8 +29,8 @@ class Post{
         return $this->tags;
     }
 
-    public function setTag($tag){
-        $this->tags[]=$tag;
+    public function setTags($tags){
+        $this->tags=$tags;
     }
 }
 

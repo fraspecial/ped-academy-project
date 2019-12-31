@@ -5,39 +5,46 @@ function findTags(tagToFind, tags) {
     return false;
 }
 
-function filter(event) {
-    event.preventDefault();
-    tagToFind=event.target.text;
+function filter(tagToFind) {
     $('h1').text('Post filtrati per tag #'+tagToFind);
     posts=document.querySelectorAll('article');
+    
     for(post of posts){
+        post.classList.remove("hidden");
         tags=post.querySelectorAll('.tag');
-        if(tags.length==0 || !findTags(tagToFind, tags))
-            post.innerHTML="";
+        if(tags.length==0 || !findTags(tagToFind, tags)){
+            post.classList.add("hidden");
         }
+    }
+}
+
+function checkPasswords(form) {  
+    if(form.type.value=="signup"){
+        if(form.password.value!=form.password_confirm.value)
+            return false;
+    }
+
+    return true;
 }
 
 function validate(event) {
-    if (event.target.checkValidity() === false)
+    if (!event.target.checkValidity() || !checkPasswords(event.target)){
         event.preventDefault();
+    }
+
     event.target.classList.add('was-validated');
 }
 
 $(window).on("load", function () {
-    if ($('#login').hasClass('failed'))
-        $('#login').modal('show');
 
-    if ($('#signup').hasClass('failed'))
-        $('#signup').modal('show');
-
-    $('.tag').on('click', filter);
-
-    $("#login-button").on('click', function () {
-        $('#login').modal('toggle')
+    $('#form-tag').on('submit', function(){
+        event.preventDefault();
+        filter(event.target.tag.value);
     });
 
-    $("#signup-button").on('click', function () {
-        $('#signup').modal('toggle')
+    $('.tag').on('click', function () {
+        event.preventDefault();
+        filter(event.target.text);
     });
 
     const forms = document.querySelectorAll('form');

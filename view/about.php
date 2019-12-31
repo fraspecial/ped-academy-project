@@ -8,28 +8,21 @@ include_once 'modules/header.php';
         <div class="row">
             <div class="col-4">
                 <picture class="img-fluid">
-                    <source class="img-fluid" media="(max-width: 800px)" srcset="assets\propic-small.jpg">
-                    <source class="img-fluid" media="(min-width: 800px)" srcset="assets\propic.jpg">
-                    <img class="img-fluid" src="assets\propic-fallback.jpg" alt="propic-fallback">
+                    <source class="img-fluid" srcset=<?= $user->getPropic() ?>>
+                    <img class="img-fluid" src="assets/propic-fallback.png" alt="propic-fallback">
                 </picture>
             </div>
             <div class="col-8">
                 <article>
-                    <h3>Francesco Speciale</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore
-                        et
-                        dolore
-                        magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid
-                        ex ea
-                        commodi
-                        consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                        nulla
-                        pariatur.
-                        Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit
-                        anim
-                        id est
-                        laborum.</p>
+                    <h3><?= $user->getName() . ' ' . $user->getSurname(); ?></h3>
+                    <?php
+                    if ($user->getBio() == null) { ?>
+                        <a data-toggle="modal" href="#bio">Aggiungi la tua bio</a>
+                    <?php } else { ?>
+                        <p><?= $user->getBio() ?></p>
+                        <a data-toggle="modal" href="#bio">Modifica</a>
+                    <?php } ?>
+                    </p>
                 </article>
             </div>
         </div>
@@ -41,74 +34,83 @@ include_once 'modules/header.php';
         <table class="table table-bordered table-striped table-hover table-responsive-sm">
             <thead>
                 <tr>
-                    <th>Lingua</th>
-                    <th>Scritto</th>
-                    <th>Parlato</th>
-                    <th>Ascolto</th>
+                    <th scope="col"></th>
+                    <th scope="col">Lingua</th>
+                    <th scope="col">Listening</th>
+                    <th scope="col">Reading</th>
+                    <th scope="col">Writing</th>
+                    <th scope="col">Speaking</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Italiano</td>
-                    <td>C2</td>
-                    <td>C1</td>
-                    <td>C1</td>
-                </tr>
-                <tr>
-                    <td>Inglese</td>
-                    <td>C1</td>
-                    <td>B2</td>
-                    <td>B2</td>
-                </tr>
+
+                <?php
+                foreach ($user->getLanguageList()->getLanguages() as $language) { ?>
+                    <tr>
+                        <td scope="row">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash">
+                                <polyline points="3 6 5 6 21 6" />
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                            </svg>
+                        </td>
+                        <td><?= $language->getName() ?></td>
+                        <td><?= $language->getListening() ?></td>
+                        <td><?= $language->getReading() ?></td>
+                        <td><?= $language->getWriting() ?></td>
+                        <td><?= $language->getSpeaking() ?></td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
     </section>
-
     <section class="mb-5">
         <h3>Portfolio</h3>
         <div class="row carousel-row justify-content-center">
             <div class="col-8">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                        <?php
+                        if ($user->getPortfolio()!=null) {
+                            $i = 0;
+                            while ($i < $user->getPortfolio()->getLength()) { ?>
+                                <li data-target="#carouselExampleIndicators" data-slide-to=<?= strval($i) ?> class=<?php if ($i == 0) echo "active"; ?>></li>
+                        <?php $i++;}
+                        } ?>
                     </ol>
                     <div class="carousel-inner">
-
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="assets\IMG_3258.jpg" alt="First slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Berliner Dom</h5>
-                                <p>Edit ispirato ai lavori di Escher di uno scatto sotto la cupola del Parlamento tedesco.</p>
+                        <?php if ($user->getPortfolio()!= null)
+                            foreach ($user->getPortfolio()->getPictures() as $picture) { ?>
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src=<?= $picture->getPath() ?>>
+                                <div class="carousel-caption d-none d-md-block">
+                                    <div class="carousel-row row">
+                                        <div class="col-9">
+                                            <h5><?= $picture->getTitle() ?></h5>
+                                        </div>
+                                        <div class="col-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
+                                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash">
+                                                <polyline points="3 6 5 6 21 6" />
+                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <p><?= $picture->getCaption() ?></p>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="assets\IMG_20190831_132814_513.jpg" alt="Second slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Bagnanti a Bue Marino, Favignana</h5>
-                                <p>Un ricordo della scorsa estate con alcuni dei miei più cari amici.</p>
-                            </div>
-                        </div>
-
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="assets\IMG_20191012_162745_790.jpg" alt="Third slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>La luce al buio</h5>
-                                <p>Un ricordo della mia trasferta a Torino per il Club to Club 2018</p>
-                            </div>
-                        </div>
-
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="assets\IMG_20190913_205129_469.jpg" alt="Fourth slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Francesca e il mare</h5>
-                                <p>La mia migliore amica alla Scala dei Turchi, vicino Agrigento.</p>
-                            </div>
-                        </div>
-
+                            
+                        <?php } ?>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
