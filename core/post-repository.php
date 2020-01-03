@@ -2,7 +2,7 @@
 
 function getUser(){
     $pdo=connect();
-    $row=$pdo->query("SELECT id from `user` WHERE email='" . $_SESSION['loggedUser'] . "'");
+    $row=$pdo->query("SELECT id from `user` WHERE username='" . $_SESSION['loggedUser'] . "'");
     $user_id=$row->fetch();
     $user_id=$user_id["id"];
     return $user_id;
@@ -43,7 +43,7 @@ function insertTags($post_id){
 function getAllPosts(){
     if(isLogged()){
         $pdo=connect();
-        $rows=$pdo->query("SELECT post.id, post.title, post.content, post.creation_date FROM `user` join post on post.user_id=`user`.id where email='" . $_SESSION['loggedUser'] . "'");
+        $rows=$pdo->query("SELECT post.id, post.title, post.content, post.creation_date FROM `user` join post on post.user_id=`user`.id where username='" . $_SESSION['loggedUser'] . "'");
         if($rows){
             $posts=$rows->fetchAll(PDO::FETCH_ASSOC);
             $post_repository=new PostRepository();
@@ -65,7 +65,4 @@ function getAllPosts(){
         }
     }
 }
-
-if(isset($_POST['title']) && isset($_POST['content']))
-    insertPost();
 ?>

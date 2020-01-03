@@ -11,5 +11,10 @@ class TagList implements ListInterface{
     public function save($tag){
         $this->tags[]=$tag;
     }
+
+    public function getLength()
+    {
+        return sizeof($this->tags);
+    }
 }
 ?>

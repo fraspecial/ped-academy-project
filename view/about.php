@@ -9,7 +9,17 @@ include_once 'modules/header.php';
             <div class="col-4">
                 <picture class="img-fluid">
                     <source class="img-fluid" srcset=<?= $user->getPropic() ?>>
-                    <img class="img-fluid" src="assets/propic-fallback.png" alt="propic-fallback">
+                    <div id="propic-icon">
+                        <img class="img-fluid" src="assets/propic-fallback.png" alt="propic-fallback">
+                        <label for="propic"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-camera">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                                </path>
+                                <circle cx="12" cy="13" r="4">
+                                </circle>
+                            </svg>
+                        </label>
+                        <input type="file" name="propic" id="" accept="image/*">
+                    </div>
                 </picture>
             </div>
             <div class="col-8">
@@ -17,10 +27,10 @@ include_once 'modules/header.php';
                     <h3><?= $user->getName() . ' ' . $user->getSurname(); ?></h3>
                     <?php
                     if ($user->getBio() == null) { ?>
-                        <a data-toggle="modal" href="#bio">Aggiungi la tua bio</a>
+                        <a class="edit bio" data-toggle="modal" href="#modal">Aggiungi la tua bio</a>
                     <?php } else { ?>
-                        <p><?= $user->getBio() ?></p>
-                        <a data-toggle="modal" href="#bio">Modifica</a>
+                        <p id="temp-bio"><?= $user->getBio() ?></p>
+                        <a class="edit bio" data-toggle="modal" href="#modal">Modifica</a>
                     <?php } ?>
                     </p>
                 </article>
@@ -43,27 +53,31 @@ include_once 'modules/header.php';
                 </tr>
             </thead>
             <tbody>
-
                 <?php
                 foreach ($user->getLanguageList()->getLanguages() as $language) { ?>
                     <tr>
-                        <td scope="row">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
+                        <td data-lang=<?= $language->getName() ?> scope="row">
+                            <svg class="edit lang" data-toggle="modal" data-target="#modal" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                             </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash">
+                            <svg class="delete lang" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash">
                                 <polyline points="3 6 5 6 21 6" />
                                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
                             </svg>
                         </td>
                         <td><?= $language->getName() ?></td>
-                        <td><?= $language->getListening() ?></td>
-                        <td><?= $language->getReading() ?></td>
-                        <td><?= $language->getWriting() ?></td>
-                        <td><?= $language->getSpeaking() ?></td>
+                        <td class="Listening"><?= $language->getListening() ?></td>
+                        <td class="Reading"><?= $language->getReading() ?></td>
+                        <td class="Writing"><?= $language->getWriting() ?></td>
+                        <td class="Speaking"><?= $language->getSpeaking() ?></td>
                     </tr>
                 <?php } ?>
+                <tr>
+                    <td colspan="6">
+                        <a class="add lang" data-toggle="modal" href="#modal">Inserisci una nuova lingua</a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </section>
@@ -93,21 +107,17 @@ include_once 'modules/header.php';
                                             <h5><?= $picture->getTitle() ?></h5>
                                         </div>
                                         <div class="col-3">
-                                            <form action="" method="post">
-                                                <label for="add-picture"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-                                                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                                </svg>
-                                            </label>
-                                            <input type="file" style="display:none" name="add-picture" id="add-picture" multiple accept='image/*'>    
-                                            </form>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash">
-                                                <polyline points="3 6 5 6 21 6" />
-                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                            <svg class='add' data-toggle="modal" data-target="#modal" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
+                                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                <line x1="5" y1="12" x2="19" y2="12"></line>
                                             </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
+                                            <svg class="edit pic" data-toggle="modal" data-target="#modal" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
                                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                            </svg>
+                                            <svg class="delete pic" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash">
+                                                <polyline points="3 6 5 6 21 6" />
+                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
                                             </svg>
                                         </div>
                                     </div>
@@ -132,3 +142,4 @@ include_once 'modules/header.php';
 </div>
 
 <?php include_once 'modules/footer.php'; ?>
+<script src="assets/about.js"></script>

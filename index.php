@@ -3,7 +3,7 @@ require_once 'core/bootstrap.php';
 require_once 'core/login-handler.php';
 require_once 'core/post-repository.php';
 
-$array=getAllPosts();
+$post_repository=getAllPosts();
 
 function verifyUser()
 {

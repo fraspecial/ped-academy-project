@@ -109,6 +109,17 @@ svg:hover{
     color: black;
 }
 
+#propic-icon{
+    position: relative;
+}
+
+#propic-icon svg{
+    position: absolute;
+    bottom: 0;
+    right:0;
+}
+
 .hidden{
     display: none;
 }
+
