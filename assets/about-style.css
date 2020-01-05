@@ -1,0 +1,57 @@
+.carousel-caption{
+    background-color: rgba(161, 158, 158, 0.39);
+    border-radius: 20px 0 0 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+textarea{
+    width: 100%;
+}
+
+svg:hover{
+    color: black;
+}
+
+#picform{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+}
+
+#picform label{
+    
+    width: 50%;
+    height: 50%;
+}
+
+#picform label svg{
+    width: 100%;
+    height: 100%;
+}
+
+#overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(104, 101, 101, 0.39);
+}
+
+.col-4{
+    padding: 0;
+}
+
+#picform a{
+    z-index: 1;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+}

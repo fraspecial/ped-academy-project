@@ -35,6 +35,23 @@ function validate(event) {
     event.target.classList.add('was-validated');
 }
 
+function createPostForm(){
+    $('.modal-body').html("");
+    $('#modalTitle').text('Modifica post');
+    $('.modal-body').append("<div class='row form-group'></div>");
+    $('.modal-body .row').append("<label for='title'>Titolo</label>");
+    $('.modal-body .row').append("<input class='form-control' type='text' name='title'>");
+    $('.modal-body').append("<div class='row form-group'></div>");
+    $('.modal-body .row:nth-child(2)').append("<label for='content'>Contenuto</label>");
+    $('.modal-body .row:nth-child(2)').append("<textarea class=''form-control' cols='30' rows='10 name='content'></textarea>");
+}
+
+function editPost(title, content){
+    createPostForm();
+    $('input[name="title"]').attr('value', title);
+    $('textarea').text(content);
+}
+
 $(window).on("load", function () {
 
     $('#form-tag').on('submit', function(){
@@ -47,7 +64,12 @@ $(window).on("load", function () {
         filter(event.target.text);
     });
 
-    const forms = document.querySelectorAll('form');
-    for (form of forms)
-        form.addEventListener('submit', validate);
+    $('form').submit(validate);
+
+    $('.edit').on('click', function () {
+        if($(this).hasClass('post')){
+            editPost($(this).parents().siblings('.col-11').children('h3').text(),
+            $(this).parents('article').children('p').text());
+        }
+    });
 });

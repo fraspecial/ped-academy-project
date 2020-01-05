@@ -84,6 +84,22 @@ function editPic(image){
     $('textarea[name="caption"]').text(caption);
 }
 
+function handlerIn(){
+    
+    $("#overlay").fadeIn();
+    $("#picform a").fadeIn();
+    $("#picform label").fadeIn();
+    
+}
+
+function handlerOut(){
+    
+    $( "#overlay").fadeOut();
+    $("#picform a").fadeOut();
+    $( "#picform label").fadeOut();
+    
+}
+
 $(window).on('load', function(){
     $('.edit').on('click', function(){
         if($(this).hasClass('bio'))
@@ -103,4 +119,13 @@ $(window).on('load', function(){
             addPic();
     });
 
+    $('#propic').change(function () {
+        $('#picform').submit();
+    });
+        
+    
+    $('#overlay').hide();
+    $('#picform label').hide();
+    $('#picform a').hide();
+    $('#picform').hover(handlerIn, handlerOut);
 });

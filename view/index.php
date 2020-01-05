@@ -32,7 +32,7 @@ include_once 'modules/header.php';
                         <h3><?= $post->getTitle() ?></h3>
                     </div>
                     <div class="col-1">
-                        <a href="edit"><img src="assets/edit.svg" alt="edit"></a>
+                        <a class='edit post' data-toggle="modal" href="#modal"><img src="assets/edit.svg" alt="edit"></a>
                         <a href="delete"><img src="assets/trash.svg" alt="delete"></a>
                     </div>
                 </div>
