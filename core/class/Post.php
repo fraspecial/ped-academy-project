@@ -4,7 +4,7 @@ class Post{
     private $title;
     private $content;
     private $creation_date;
-    private $tags;
+    private $taglist;
 
     public function __construct($title, $content, $creation_date)
     {
@@ -25,12 +25,12 @@ class Post{
         return $this->creation_date;
     }
 
-    public function getTags(){
-        return $this->tags;
+    public function getTagList(){
+        return $this->taglist;
     }
 
-    public function setTags($tags){
-        $this->tags=$tags;
+    public function setTagList($taglist){
+        $this->taglist=$taglist;
     }
 }
 

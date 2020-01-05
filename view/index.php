@@ -40,10 +40,11 @@ include_once 'modules/header.php';
                 <p class='post-content'><?= $post->getContent() ?></p>
                 <footer>Tags:
                     <?php
-                    foreach ($post->getTags() as $tag) {
+                    if($post->getTagList()){
+                    foreach ($post->getTagList()->getTags() as $tag) {
                     ?>
                         <a class='tag' href=''><?= $tag->getTitle() ?></a>&nbsp;
-                    <?php } ?>
+                    <?php }} ?>
                 </footer>
             </article>
         <?php } ?>

@@ -97,3 +97,7 @@ input[type="search"]{
     display: none;
 }
 
+.form-row{
+    margin-left: 0;
+    margin-right: 0;
+}

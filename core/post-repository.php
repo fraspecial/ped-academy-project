@@ -1,12 +1,5 @@
 <?php
 
-function getUser(){
-    $pdo=connect();
-    $row=$pdo->query("SELECT id from `user` WHERE username='" . $_SESSION['loggedUser'] . "'");
-    $user_id=$row->fetch();
-    $user_id=$user_id["id"];
-    return $user_id;
-}
 
 function insertPost(){
     $pdo=connect();
@@ -16,8 +9,10 @@ function insertPost(){
     $statement->bindParam(':content', $_POST['content']);
     $statement->execute();
     $post_id=$pdo->lastInsertId();
-    if(isset($_POST['tags']))
+    if(isset($_POST['tags'])) {
+        print_r('Inserisco tags');
         insertTags($post_id);
+    }
 }
 
 function insertTags($post_id){
@@ -57,7 +52,7 @@ function getAllPosts(){
                         $loaded_tag=new tag($tag['title']);
                         $tagList->save($loaded_tag);
                     }
-                        $loaded_post->setTags($tagList);
+                        $loaded_post->setTagList($tagList);
                 }
                 $post_repository->save($loaded_post);
             }

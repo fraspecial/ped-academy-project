@@ -12,6 +12,10 @@ class TagList implements ListInterface{
         $this->tags[]=$tag;
     }
 
+    public function getTags(){
+        return $this->tags;
+    }
+
     public function getLength()
     {
         return sizeof($this->tags);

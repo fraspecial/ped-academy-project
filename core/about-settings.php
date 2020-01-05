@@ -36,3 +36,19 @@ function portfolio(){
     }
     else return null;
 }
+
+function updateLang(){
+    $user_id=getUser();
+    $pdo=connect();
+    $statement=$pdo->prepare("UPDATE languages set listening=:listening, reading=:reading, writing=:writing, speaking=:speaking where id_user=$user_id and `language`=:lang");
+    $statement->bindParam(':listening', $_POST['listening']);
+    $statement->bindParam(':reading', $_POST['reading']);
+    $statement->bindParam(':writing', $_POST['writing']);
+    $statement->bindParam(':speaking', $_POST['speaking']);
+    $statement->bindParam(':speaking', $_POST['lang']);
+    $statement->execute();
+}
+
+function updatePic(){
+
+}

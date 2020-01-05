@@ -36,14 +36,17 @@ function validate(event) {
 }
 
 function createPostForm(){
-    $('.modal-body').html("");
+    $('#modal-form').html("");
     $('#modalTitle').text('Modifica post');
-    $('.modal-body').append("<div class='row form-group'></div>");
-    $('.modal-body .row').append("<label for='title'>Titolo</label>");
-    $('.modal-body .row').append("<input class='form-control' type='text' name='title'>");
-    $('.modal-body').append("<div class='row form-group'></div>");
-    $('.modal-body .row:nth-child(2)').append("<label for='content'>Contenuto</label>");
-    $('.modal-body .row:nth-child(2)').append("<textarea class=''form-control' cols='30' rows='10 name='content'></textarea>");
+    $('#modal-form').append("<div class='form-group'></div>");
+    $('#modal-form').append("<div class='form-group'></div>");
+    $('#modal-form').append("<div class='form-group'></div>");
+    $('#modal-form .form-group:first-child').append("<label for='title'>Titolo</label>");
+    $('#modal-form .form-group:first-child').append("<input class='form-control' type='text' name='title' required>");
+    $('#modal-form .form-group:nth-child(2)').append("<label for='content'>Contenuto</label>");
+    $('#modal-form .form-group:nth-child(2)').append("<textarea class='form-control' cols='30' rows='10' name='content' required></textarea>");
+    $('#modal-form .form-group:last-child').append("<label for='tags'>Tags</label>");
+    $('#modal-form .form-group:last-child').append("<input class='form-control' type='text' name='tags'>");
 }
 
 function editPost(title, content){

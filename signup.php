@@ -1,6 +1,5 @@
 <?php
 require_once 'core/bootstrap.php';
-require_once 'core/login_handler';
 
 $GLOBALS['err-signup']=false;
 
