@@ -3,12 +3,14 @@
 class User {
     private $name;
     private $surname;
+    private $email;
+    private $username;
     private $propic;
     private $about;
     private $languages;
     private $portfolio;
 
-    public function __construct($name, $surname, $propic=null, $about=null, $languages, $portfolio)
+    public function __construct($name, $surname, $propic=null, $about=null, $languages=null, $portfolio=null)
     {
         $this->name=$name;
         $this->surname=$surname;
@@ -41,6 +43,23 @@ class User {
     public function getPortfolio(){
         return $this->portfolio;
     }
+
+    public function setEmail($email){
+        $this->email=$email;
+    }
+
+    public function setUsername($username){
+        $this->username=$username;
+    }
+
+    public function getUsername(){
+        return $this->username;
+    }
+
+    public function getEmail(){
+        return $this->email;
+    }
+
 }
 
 ?>

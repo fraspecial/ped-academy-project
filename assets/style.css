@@ -8,19 +8,11 @@ html {
     margin-bottom: 6rem;
 }
 
-#login-form, #signup-form{
+#login-form, #signup-form, #edit-form{
     margin-top: 4rem;
     padding: 1rem;
     border-radius: 20px;
     border: 1px solid rgb(194, 192, 201);
-}
-
-#login-form{
-    width: 30%;
-}
-
-
-#signup-form{
     width: 60%;
 }
 
@@ -100,4 +92,24 @@ input[type="search"]{
 .form-row{
     margin-left: 0;
     margin-right: 0;
+}
+
+a.delete{
+    color: red;
+}
+
+svg{
+    color: black;
+}
+
+svg.delete:hover{
+    color:red;
+}
+
+svg.edit:hover{
+    color:blue;
+}
+
+svg.add:hover{
+    color:green;
 }

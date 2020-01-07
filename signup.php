@@ -23,13 +23,12 @@ function insertUser(){
 }
 
 if(isset($form)){
-    if($form =='signup')
-        if(isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password'])){
+    if($form =='signup'){
+        if(isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password_confirm'])){
             if(insertUser())
             loginUser("about.php");
-            else
-            $GLOBALS['err-signup']=true;
         }
+    }
 }
 
 include_once 'view/signup.php';

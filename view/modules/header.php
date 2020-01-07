@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"><link rel="stylesheet" href="assets/style.css">
     <title>Blog</title>
 </head>
 
@@ -23,7 +22,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
             <?php if(isLogged()){?>
-                <li class="nav-item"><a class="nav-link" href="about.php" hreflang="it">About</a></li>
+                <li class="nav-item <?php if ($curLink=='about.php') echo 'active';?>"><a class="nav-link" href="about.php" hreflang="it">About</a></li>
+                <li class="nav-item <?php if ($curLink=='settings.php') echo 'active';?>"><a class="nav-link" href="settings.php" hreflang="it">Impostazioni</a></li>
             <?php  } ?>
             </ul>
             <?php if(isset($_SESSION['loggedUser'])){?>

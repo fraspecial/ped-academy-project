@@ -1,17 +1,17 @@
 .carousel-caption{
-    background-color: rgba(161, 158, 158, 0.39);
+    background-color: rgba(109, 109, 109, 0.623);
     border-radius: 20px 0 0 0;
     bottom: 0;
     left: 0;
     right: 0;
 }
+.prev-icon svg,
+.next-icon svg{
+    color: rgba(109, 109, 109, 0.623);
+}
 
 textarea{
     width: 100%;
-}
-
-svg:hover{
-    color: black;
 }
 
 #picform{
@@ -47,6 +47,7 @@ svg:hover{
 
 .col-4{
     padding: 0;
+    height: fit-content;
 }
 
 #picform a{

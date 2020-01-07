@@ -13,7 +13,7 @@ function returnMark(original_mark, mark) {
 
 function fillOptions(skills){
     marks=["A1", "A2", "B1", "B2", "C1", "C2"];
-    string="<div class='form-row'>";
+    string="<div class='form-row '>";
     for(skill in skills){
         string+="<div class='col'><label>"+skill+"<select class='custom-select' name="+skill+">";
         for(mark of marks)
@@ -47,8 +47,8 @@ function editLanguage(column){
              "Writing": $(column).siblings('.Writing').text(),
              "Speaking": $(column).siblings('.Speaking').text()
             };
-    $('.modal-footer').append('<input type="hidden" name="lang" value='+lang+">");
     createLanguageForm(skills);
+    $('#modal-form').append('<input type="hidden" name="edit" value="'+lang+'>');
 }
 
 
@@ -66,6 +66,7 @@ function createPicForm(){
 
 function addPic(){
     createPicForm();
+    $('#modal-form').attr('enctype', 'multipart/form-data');
     $('#modalTitle').text("Aggiungi una foto");
     $('.col-title').after('<div class="col-6"><input type="file" name="pic" accept="image/*"></div>');
 }
@@ -75,7 +76,7 @@ function editPic(image){
     createPicForm();
     img_src=$(image).siblings('img').attr('src');
     $('#modalTitle').text(img_src);
-    $('#modal-form').append('<input type="hidden" name="pic" value='+img_src+'>');
+    $('#modal-form').append('<input type="hidden" name="edit" value='+img_src+'>');
     title=$(image).find('h5');
     title=title.text();
     caption=$(image).children('p').text();
@@ -83,7 +84,7 @@ function editPic(image){
     $('textarea[name="caption"]').text(caption);
 }
 
-function handlerIn(){
+function handlerPicformIn(){
     
     $("#overlay").fadeIn();
     $("#picform a").fadeIn();
@@ -91,7 +92,7 @@ function handlerIn(){
     
 }
 
-function handlerOut(){
+function handlerPicformOut(){
     
     $( "#overlay").fadeOut();
     $("#picform a").fadeOut();
@@ -126,5 +127,15 @@ $(window).on('load', function(){
     $('#overlay').hide();
     $('#picform label').hide();
     $('#picform a').hide();
-    $('#picform').hover(handlerIn, handlerOut);
+    $('#picform').hover(handlerPicformIn, handlerPicformOut);
+
+    $('.carousel-caption').hide();
+
+    $('#carouselExampleIndicators').hover(
+        function(){
+            $(this).find('.carousel-caption').slideDown('slow');
+        },
+        function(){
+            $(this).find('.carousel-caption').slideUp('slow')
+        });
 });
