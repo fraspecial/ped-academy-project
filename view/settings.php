@@ -5,6 +5,12 @@ if (isset($_SESSION['lock']) && !$_SESSION['lock']) { ?>
         <div class="row justify-content-center">
             <form id="edit-form" action="" method="post" class="needs-validation" novalidate>
                 <h5>Modifica i tuoi dati</h5>
+                <?php if ($GLOBALS['err-email']) { ?>
+                    <div class="alert alert-danger text-center"><?php echo "Modifica fallita! Email non valida!"; ?></div>
+                <?php } ?>
+                <?php if ($GLOBALS['err-username']) { ?>
+                    <div class="alert alert-danger text-center"><?php echo "Modifica fallita! Username non valido!"; ?></div>
+                <?php } ?>
                 <fieldset class="form-group">
                     <div class="form-row">
                         <div class="col-6">

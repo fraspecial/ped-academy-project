@@ -1,6 +1,8 @@
 <?php
 
 $GLOBALS['err-login'] = false;
+$GLOBALS['err-username']=false;
+$GLOBALS['err-email']=false;
 
 function loginUser($path){
     $_SESSION['loggedUser']=$_POST['username'];
@@ -33,6 +35,41 @@ function verifyUser()
         if(sizeof($items)==1){
             return verifyPassword($_POST['password'],$items[0]['password']);
         }
+    } catch (PDOException $e) {
+        print ('Error! ' . $e->getMessage()) . '<br/>';
+        die();
+    }
+}
+
+
+function verifyEmail(){
+    try {
+        $pdo = connect();
+        $statement = $pdo->prepare("SELECT email from `user` where email=:email");
+        $statement->bindParam(':email', $_POST['email']);
+        $statement->execute();
+        $items=$statement->fetchAll(PDO::FETCH_ASSOC);
+        if(sizeof($items)==1){
+            return false;
+        }
+        else return true;
+    } catch (PDOException $e) {
+        print ('Error! ' . $e->getMessage()) . '<br/>';
+        die();
+    }
+}
+
+function verifyUsername(){
+    try {
+        $pdo = connect();
+        $statement = $pdo->prepare("SELECT username from `user` where username=:username");
+        $statement->bindParam(':username', $_POST['username']);
+        $statement->execute();
+        $items=$statement->fetchAll(PDO::FETCH_ASSOC);
+        if(sizeof($items)==1){
+            return false;
+        }
+        else return true;
     } catch (PDOException $e) {
         print ('Error! ' . $e->getMessage()) . '<br/>';
         die();

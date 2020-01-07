@@ -5,6 +5,12 @@ include_once 'modules/header.php';
     <div class="row  justify-content-center">
         <form id="signup-form" action="" method="post" class="needs-validation" novalidate>
             <h5>Registrati</h5>
+            <?php if ($GLOBALS['err-email']) { ?>
+                <div class="alert alert-danger text-center"><?php echo "Signup fallito! Email non valida!"; ?></div>
+            <?php } ?>
+            <?php if ($GLOBALS['err-username']) { ?>
+                <div class="alert alert-danger text-center"><?php echo "Signup fallito! Username non valido!"; ?></div>
+            <?php } ?>
             <fieldset class="form-group">
                 <div class="form-row">
                     <div class="col-6">
