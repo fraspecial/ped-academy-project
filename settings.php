@@ -30,16 +30,21 @@ function updateAccount($user_id){
             echo 'Password not confirmed';
             exit;
         }
-
-        elseif(!empty($_POST['password'])){
+        elseif(!empty($_POST['password'])){ 
+            $match=null;
+            preg_match('/(?=.*[A-Z])(?=.*\d)([\S\s]){8,50}/', $_POST['password'], $match);
+            if($match!=null){
             $statement=$pdo->prepare("UPDATE `user` set `password`=:password where id=$user_id");
             $pw=password_hash($_POST['password'], PASSWORD_DEFAULT);
             $statement->bindParam(':password', $pw);
             $statement->execute();
-        }
-        return true;
+            }
+            else{
+                echo "password non valida";
+                exit;
+            }
+
     }
-    else return false;
 }
 
 unlock();

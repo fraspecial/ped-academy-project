@@ -36,7 +36,8 @@ function createLanguageForm(skills={"Listening": "", "Reading": "", "Writing": "
 function addLanguage() {
     createLanguageForm();
     $('#modalTitle').text("Aggiungi una lingua");
-    $('#modal-form .form-row').before('<div class="form-row"><label for "lang">Lingua</label><input class="form-control" type="text" name="newlang"></div>');
+    $('#modal-form .form-row').before('<div class="form-row"><div class="col"><label for "lang">Lingua</label><input class="form-control" type="text" name="newlang" required pattern="([A-Za-z]\\s*)+"><div class="invalid-feedback">Sono permesse solo le lettere</div></div></div>');
+
 }
 
 function editLanguage(column){
@@ -68,7 +69,7 @@ function addPic(){
     createPicForm();
     $('#modal-form').attr('enctype', 'multipart/form-data');
     $('#modalTitle').text("Aggiungi una foto");
-    $('.col-title').after('<div class="col-6"><input type="file" name="pic" accept="image/*"></div>');
+    $('.col-title').after('<div class="col-6 d-flex align-items-end"><input type="file" name="pic" accept="image/*"></div>');
 }
 
 

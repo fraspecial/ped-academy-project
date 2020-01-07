@@ -52,7 +52,7 @@ if (isset($_SESSION['lock']) && !$_SESSION['lock']) { ?>
                     </div>
                 </fieldset>
 
-                <input type="hidden" name="type" value="edit">
+                <input type="hidden" name="type" value="account">
 
                 <div class="d-flex row align-items-center justify-content-center">
                     <div class="d-flex align-items-center col-10 justify-content-between">
