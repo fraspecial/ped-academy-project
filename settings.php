@@ -43,7 +43,7 @@ function updateAccount($user_id){
                 echo "password non valida";
                 exit;
             }
-
+        }
     }
 }
 
