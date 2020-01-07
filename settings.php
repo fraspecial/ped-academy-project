@@ -1,21 +1,18 @@
 <?php
-
-$GLOBALS['lock']=false;
 require 'core/bootstrap.php';
-function unlock(){
-//if($GLOBALS['unlock'] || isset($_POST['old-password'])){
-    $pdo=connect();
-    $row=$pdo->query("SELECT `password` from `user` where username='".$_SESSION['loggedUser']."'");
-    $item=$row->fetch(PDO::FETCH_ASSOC);
-    $pwd=$item['password'];
 
-    if($GLOBALS['lock']==true)
-        if(verifyPassword($_POST['old-password'], $pwd)){
-            $GLOBALS['lock']=false;
-            return true;
-        }
-    //}
-    return false;
+function unlock(){
+    if(isset($_POST['old-password'])){
+        $pdo=connect();
+        $row=$pdo->query("SELECT `password` from `user` where username='".$_SESSION['loggedUser']."'");
+        $item=$row->fetch(PDO::FETCH_ASSOC);
+        $pwd=$item['password'];
+
+        if(verifyPassword($_POST['old-password'], $pwd))
+            $_SESSION['lock']=false;
+        else
+        $_SESSION['lock']=true;
+    }
 }
 
 function updateAccount($user_id){
@@ -31,7 +28,7 @@ function updateAccount($user_id){
 
         if($_POST['password'] != $_POST['password_confirm']){
             echo 'Password not confirmed';
-            //exit;
+            exit;
         }
 
         elseif(!empty($_POST['password'])){
@@ -45,11 +42,12 @@ function updateAccount($user_id){
     else return false;
 }
 
+unlock();
+updateAccount($user_id);
 
 $pdo=connect();
 $row=$pdo->query("SELECT first_name, last_name, email from `user` where username='".$_SESSION['loggedUser']."'");
 $result=$row->fetch();
-
 $user=new User($result['first_name'], $result['last_name']);
 $user->setEmail($result['email']);
 $user->setUsername($_SESSION['loggedUser']);

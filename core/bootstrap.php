@@ -29,4 +29,8 @@ $user_id=getUser();
 
 if(!isLogged() && $curLink != "index.php" && $curLink != "signup.php")
 header('Location: index.php');
+
+if($curLink != "settings.php")
+unset($_SESSION['lock']);
+
 ?>

@@ -95,3 +95,4 @@ include_once 'modules/header.php';
 
 </div>
 <?php include_once 'modules/footer.php'; ?>
+<script src="assets/index.js"></script>

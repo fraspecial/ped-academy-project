@@ -1,6 +1,6 @@
 <?php
 include 'modules/header.php';
-if (unlock() || updateAccount($user_id)) { ?>
+if (isset($_SESSION['lock']) && !$_SESSION['lock']) { ?>
     <div class="container">
         <div class="row justify-content-center">
             <form id="edit-form" action="" method="post" class="needs-validation" novalidate>

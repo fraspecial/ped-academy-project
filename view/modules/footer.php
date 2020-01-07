@@ -1,7 +1,7 @@
 <footer id="footer"> Powered by Francesco Speciale - PED Academy</footer>
 
 
-<div class="modal fade <?php if ($GLOBALS['lock']) echo 'no-password' ?>" id="modal" tabindex="-1" role="dialog" data-show="true" aria-labelledby="bioTitle" aria-hidden="true">
+<div class="modal fade <?php if (!isset($_SESSION['lock']) || $_SESSION['lock']) echo 'no-password'; ?>" id="modal" tabindex="-1" role="dialog" data-show="true" aria-labelledby="bioTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header border-bottom-0">
@@ -10,7 +10,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?php if (isset($_POST['old-password']) && $GLOBALS['lock'] == true) { ?>
+            <?php if (isset($_POST['old-password']) && $_SESSION['lock']) { ?>
                 <div class="alert alert-danger text-center"><?php echo "Invalid password!"; ?></div>
             <?php } ?>
             <div class="modal-body container mb-0">

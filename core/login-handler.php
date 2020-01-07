@@ -41,8 +41,10 @@ function verifyUser()
 
 function logoutUser()
 {
+    unset($_SESSION['lock']);
     unset($_COOKIE['user']);
     unset($_SESSION['loggedUser']);
+    header('Location: index.php');
 }
 
 ?>

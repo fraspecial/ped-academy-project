@@ -16,6 +16,10 @@ html {
     width: 60%;
 }
 
+#login-form{
+    width: 30%;
+}
+
 .header{
     justify-content: space-between;
 }
@@ -36,9 +40,6 @@ article{
     margin: 0.7rem 0;
 }
 
-.login{
-    margin-top: 1rem;
-}
 
 .btn{
     padding: 0.25rem 2.5rem;
@@ -92,6 +93,16 @@ input[type="search"]{
 .form-row{
     margin-left: 0;
     margin-right: 0;
+}
+
+
+.was-validated .form-control:valid.pseudo-invalid{
+    border-color: #dc3545;
+    padding-right: calc(1.5em + .75rem);
+    background-repeat : no-repeat;
+    background-image: url('../assets/alert-circle.svg');
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem); 
 }
 
 a.delete{
