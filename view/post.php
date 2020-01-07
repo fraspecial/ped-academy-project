@@ -21,7 +21,7 @@
 
                         <div>
                             <label for="tags">Tags:</label>
-                            <input class="form-control" type="text" name="tags" id="tags" pattern="(\s*#[a-zA-Z0-9]+\s*)+">
+                            <input class="form-control" type="text" name="tags" id="tags" placeholder="Ogni tag deve essere preceduto da #" pattern="(\s*#[a-zA-Z0-9]+\s*)+">
                             <div class="invalid-feedback">Sono permesse solo parole precedute da #</div>
                         </div>
 

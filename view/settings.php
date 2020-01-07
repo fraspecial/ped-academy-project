@@ -46,7 +46,7 @@ if (isset($_SESSION['lock']) && !$_SESSION['lock']) { ?>
                     <div class="form-row">
                         <div class="col-6">
                             <label for="password">Nuova password:</label>
-                            <input class="form-control" type="password" name="password" placeholder="8+ chars with digits and capitals" pattern="(?=.*[A-Z])(?=.*\d)([\S\s]){8,50}">
+                            <input class="form-control" type="password" name="password" placeholder="8-50 chars with digits and capitals" pattern="(?=.*[A-Z])(?=.*\d)([\S\s]){8,50}">
                             <div class="invalid-feedback">Please choose a valid password.</div>
                         </div>
 

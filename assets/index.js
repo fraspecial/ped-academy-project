@@ -29,7 +29,7 @@ function createPostForm(){
     $('#modal-form .form-group:nth-child(2)').append("<label for='content'>Contenuto</label>");
     $('#modal-form .form-group:nth-child(2)').append("<textarea class='form-control' cols='30' rows='10' name='content' required></textarea>");
     $('#modal-form .form-group:last-child').append("<label for='tags'>Tags</label>");
-    $('#modal-form .form-group:last-child').append("<input class='form-control' type='text' name='tags' pattern='(\\s*#[a-zA-Z0-9]+\\s*)+'>");
+    $('#modal-form .form-group:last-child').append("<input class='form-control' type='text' name='tags' placeholder='Ogni tag deve essere preceduto da #' pattern='(\\s*#[a-zA-Z0-9]+\\s*)+'>");
     $('#modal-form').append('<input type="hidden" name="creation_date">');
     
 }

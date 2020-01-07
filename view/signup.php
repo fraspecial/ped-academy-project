@@ -46,7 +46,7 @@ include_once 'modules/header.php';
                 <div class="form-row">
                     <div class="col-6">
                         <label for="password">Password:</label>
-                        <input class="form-control" type="password" name="password" required placeholder="8+ chars with digits and capitals">
+                        <input class="form-control" type="password" name="password" required placeholder="8-50 chars with digits and capitals">
                         <div class="invalid-feedback">Please choose a valid password.</div>
                     </div>
 
