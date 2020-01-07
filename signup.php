@@ -40,7 +40,7 @@ if(isset($form)){
     if($form =='signup'){
         if(isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password_confirm'])){
             insertUser();
-            //loginUser("about.php");
+            loginUser("about.php");
         }
     }
 }
