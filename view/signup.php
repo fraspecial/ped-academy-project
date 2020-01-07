@@ -57,9 +57,10 @@ include_once 'modules/header.php';
                     </div>
                 </div>
             </fieldset>
-
+            <div class='d-flex justify-content-center'>
             <input type="hidden" name="type" value="signup">
             <input class="btn btn-primary" type="submit" value="Sign Up">
+            </div>
         </form>
     </div>
 </div>

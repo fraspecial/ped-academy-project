@@ -87,8 +87,10 @@ include_once 'modules/header.php';
                     <label class="form-check-label" for="remember-me">Ricordami</label>
                 </div>
 
-                <input type="hidden" name="type" value="login">
-                <input class="login btn btn-success" id="submit" type="submit" value="Login">
+                <div class='d-flex justify-content-center'>
+                    <input type="hidden" name="type" value="login">
+                    <input class="login btn btn-success" id="submit" type="submit" value="Login">
+                </div>
             </form>
         </div>
     <?php } ?>
