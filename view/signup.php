@@ -46,13 +46,13 @@ include_once 'modules/header.php';
                 <div class="form-row">
                     <div class="col-6">
                         <label for="password">Password:</label>
-                        <input class="form-control" type="password" name="password" required placeholder="8-50 chars with digits and capitals">
+                        <input class="form-control" type="password" name="password" required placeholder="8-50 chars with digits and capitals" pattern="(?=.*[A-Z])(?=.*\d)([\S\s]){8,50}">
                         <div class="invalid-feedback">Please choose a valid password.</div>
                     </div>
 
                     <div class="col-6">
                         <label for="password">Confirm password:</label>
-                        <input class="form-control" type="password" name="password_confirm" required">
+                        <input class="form-control" type="password" name="password_confirm" required pattern="(?=.*[A-Z])(?=.*\d)([\S\s]){8,50}">
                         <div class="invalid-feedback">Password confirmation gone wrong</div>
                     </div>
                 </div>
