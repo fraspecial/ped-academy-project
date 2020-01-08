@@ -14,6 +14,7 @@ function getUser(){
     $user_id=$user_id["id"];
     return (int)$user_id;
     }
+    else return 0;
 }
 
 session_start();

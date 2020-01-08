@@ -1,14 +1,14 @@
 <?php
 require_once 'core/bootstrap.php';
 
-function insertUser(){
+function insertUser($user_id){
     if($_POST['password']==$_POST['password_confirm']){
         $match=null;
         preg_match('/(?=.*[A-Z])(?=.*\d)([\S\s]){8,50}/', $_POST['password'], $match);
         if($match!=null){
-            if(!verifyEmail())
+            if(!verifyEmail($user_id))
             $GLOBALS['err-email']=true;
-            elseif(!verifyUsername())
+            elseif(!verifyUsername($user_id))
             $GLOBALS['err-username']=true;
             else{
                 try{
@@ -39,7 +39,7 @@ function insertUser(){
 if(isset($form)){
     if($form =='signup'){
         if(isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password_confirm'])){
-            insertUser();
+            insertUser($user_id);
             loginUser("about.php");
         }
     }

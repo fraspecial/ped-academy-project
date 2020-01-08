@@ -34,9 +34,9 @@ function updateAccount($user_id){
             $match=null;
             preg_match('/(?=.*[A-Z])(?=.*\d)([\S\s]){8,50}/', $_POST['password'], $match);
             if($match!=null){
-                if(verifyEmail()){
+                if(verifyEmail($user_id)){
                 $GLOBALS['err-email']=false;
-                if(verifyUsername()){
+                if(verifyUsername($user_id)){
                     $GLOBALS['err-username']=false;
                     $statement=$pdo->prepare("UPDATE `user` set `password`=:password where id=$user_id");
                     $pw=password_hash($_POST['password'], PASSWORD_DEFAULT);

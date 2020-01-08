@@ -42,10 +42,10 @@ function verifyUser()
 }
 
 
-function verifyEmail(){
+function verifyEmail($user_id){
     try {
         $pdo = connect();
-        $statement = $pdo->prepare("SELECT email from `user` where email=:email");
+        $statement = $pdo->prepare("SELECT email from `user` where email=:email and id != $user_id");
         $statement->bindParam(':email', $_POST['email']);
         $statement->execute();
         $items=$statement->fetchAll(PDO::FETCH_ASSOC);
@@ -59,10 +59,10 @@ function verifyEmail(){
     }
 }
 
-function verifyUsername(){
+function verifyUsername($user_id){
     try {
         $pdo = connect();
-        $statement = $pdo->prepare("SELECT username from `user` where username=:username");
+        $statement = $pdo->prepare("SELECT username from `user` where username=:username and id !=$user_id");
         $statement->bindParam(':username', $_POST['username']);
         $statement->execute();
         $items=$statement->fetchAll(PDO::FETCH_ASSOC);

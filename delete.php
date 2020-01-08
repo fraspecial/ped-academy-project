@@ -2,6 +2,7 @@
 
 require 'core/bootstrap.php';
 require_once 'core/post-repository.php';
+require_once 'core/propic-repository.php';
 
 
 function checkPic($path){
@@ -28,24 +29,6 @@ function deletePortfolio($user_id){
         deletePic($user_id, $pic['path']);
         }
     }
-}
-
-function checkPropic($path){
-    $pdo=connect();
-    $row=$pdo->query("SELECT count(*) from `user` where `propic`='".$path."'");
-    $count=$row->fetch();
-    if($count[0]==0)
-    unlink($path);
-}
-
-function deletePropic($user_id){
-    
-    $pdo=connect();
-    $row=$pdo->query("SELECT propic from `user` where id=".$user_id);
-    $res=$row->fetch();
-    $path=$res[0];
-    $pdo->exec("UPDATE `user` set propic=null where id=".$user_id);
-    checkPropic($path);
 }
 
 function deleteLanguage($user_id){

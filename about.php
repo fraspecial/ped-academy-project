@@ -1,5 +1,6 @@
 <?php
 require_once 'core/bootstrap.php';
+require_once 'core/propic-repository.php';
 define('UPLOAD_DIR', 'assets/images/');
 
 
@@ -25,24 +26,6 @@ function updatePic($user_id){
     $statement->bindParam(':caption', $_POST['caption']);
     $statement->bindParam(':path', $_POST['edit']);
     $statement->execute();
-}
-
-function updatePropic(){
-    
-    if (!isset($_FILES['propic']) || !is_uploaded_file($_FILES['propic']['tmp_name'])) {
-    echo 'Upload failed';
-    exit;    
-    }
-
-    $target_file=UPLOAD_DIR. basename($_FILES["propic"]["name"]);
-    $tmp_name=$_FILES['propic']['tmp_name'];
-
-    if (!move_uploaded_file($tmp_name, $target_file)) {
-    echo 'Upload NON valido!'; 
-    }
-    
-    $pdo=connect();
-    $pdo->exec("UPDATE `user` set propic='".$target_file."' where username='".$_SESSION['loggedUser']."'");
 }
 
 function addPic($user_id){
@@ -131,7 +114,7 @@ if(isset($form)){
             addPic($user_id);
         break;
 
-        case "propic": updatePropic();
+        case "propic": updatePropic($user_id);
         break;
     }
 }
