@@ -12,4 +12,8 @@ $(window).on('load', function () {
 
     $('#modal').modal('show');
     }
+    
+    $('a.delete').on('click', function(){
+        confirm('Sei sicuro di volere eliminare l\'account? L\'azione sarà irreversibile.');
+    })
 });
