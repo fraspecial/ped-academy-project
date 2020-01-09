@@ -40,7 +40,7 @@ La validazione dei form avviene nella maggior parte dei casi sia lato client, sf
 Nel caso di errori di autenticazione, o se si tentasse di utilizzare email o username già presenti nel database nel momento della registrazione o della modifica dei propri dati, viene visualizzato un messaggio di errore cambiando il valore predefinito di alcune variabili globali.
 
 
-Immagini
+Immagini\n\n\n
 Tutte le immagini aggiunte dall'utente al proprio portfolio o selezionate come immagini del profilo vengono salvate in una cartella dal server e ne viene memorizzato il percorso relativo nel databse. Nel momento in cui l'utente scegliesse di eliminare una delle immagini, se questa non è utilizzata anche da un altro utente viene rimossa dalla cartella.
 
 
@@ -63,17 +63,17 @@ Viene visualizzato un form che richiede all'utente nome, cognome, email, usernam
 
 about.php
 
-  Immagine del profilo
-  In assenza di un'immagine del profilo, viene utilizzata un'immagine standard. Passando con il cursore sopra l'immagine appare un      overlay con l'icona di una macchina fotografica (vengono utilizzate le funzione JQuery fadeIn e fadeOut); cliccando su di essa (che non è altro che la label di un input nascosto di tipo file) si può impostare la propria immagine del profilo scegliendo tra le immagini presenti sul proprio host. Se l'immagine del profilo è già stata impostata, oltre all'icona già citata ne appare un'altra (un bidone) più piccola nell'angolo in alto a sinistra, cliccando sulla quale l'immagine viene eliminata.
+[Immagine del profilo]
+In assenza di un'immagine del profilo, viene utilizzata un'immagine standard. Passando con il cursore sopra l'immagine appare un      overlay con l'icona di una macchina fotografica (vengono utilizzate le funzione JQuery fadeIn e fadeOut); cliccando su di essa (che non è altro che la label di un input nascosto di tipo file) si può impostare la propria immagine del profilo scegliendo tra le immagini presenti sul proprio host. Se l'immagine del profilo è già stata impostata, oltre all'icona già citata ne appare un'altra (un bidone) più piccola nell'angolo in alto a sinistra, cliccando sulla quale l'immagine viene eliminata.
 
-  Bio
-  Accanto all'immagine del profilo, un campo di testo preceduto dal nome e dal cognome dell'utente può essere compilato a piacere   dell'utente, modificato e rimosso. Per farlo basta cliccare su un link che cambia dinamicamente a seconda che la bio sia presente oppure no ('Aggiungi la tua bio' oppure 'Modifica'): appare una modale con una textarea compilabile ed eventualmente già automaticamente  riempita con la bio esistente. Per rimuovere la bio è sufficiente eliminare tutto il testo presente nella textarea ed inviare il form.
+[Bio]
+Accanto all'immagine del profilo, un campo di testo preceduto dal nome e dal cognome dell'utente può essere compilato a piacere   dell'utente, modificato e rimosso. Per farlo basta cliccare su un link che cambia dinamicamente a seconda che la bio sia presente oppure no ('Aggiungi la tua bio' oppure 'Modifica'): appare una modale con una textarea compilabile ed eventualmente già automaticamente  riempita con la bio esistente. Per rimuovere la bio è sufficiente eliminare tutto il testo presente nella textarea ed inviare il form.
 
-  Lingue
-  Le lingue conosciute vengono renderizzate in una tabella di sei colonne e numero di righe pari al numero di lingue. Ogni cella reca nell'ordine: due icone; una c he apre una modale con un form per modificare i livelli (A1, A2, B1, B2, C1, C2) di listening, reading, writing e speaking di una lingua, l'altra per eliminare l'intera riga relativa alla lingua dalla tabella; nome della lingua; livello di listening; livello di reading; livello di writing; livello di speaking. Indipendentemente dal contenuto della tabella, esiste sempre in fondo a quest'ultima una riga aggiuntiva con una sola cella lunga quanto tutta la tabella con un link che apre una modale per inserire una nuova lingua e impostare i livelli di conoscenza della stessa nei vari ambiti.
+[Lingue]
+Le lingue conosciute vengono renderizzate in una tabella di sei colonne e numero di righe pari al numero di lingue. Ogni cella reca nell'ordine: due icone; una c he apre una modale con un form per modificare i livelli (A1, A2, B1, B2, C1, C2) di listening, reading, writing e speaking di una lingua, l'altra per eliminare l'intera riga relativa alla lingua dalla tabella; nome della lingua; livello di listening; livello di reading; livello di writing; livello di speaking. Indipendentemente dal contenuto della tabella, esiste sempre in fondo a quest'ultima una riga aggiuntiva con una sola cella lunga quanto tutta la tabella con un link che apre una modale per inserire una nuova lingua e impostare i livelli di conoscenza della stessa nei vari ambiti.
 
-  Portfolio
-  In questa sezione l'utente può creare la propria raccolta di immagini che verranno visualizzate all'interno di un carousel. Nel caso in cui la raccolta sia vuota viene visualizzata un'immagine standard. Passando il cursore sull'immagine, al verifcarsi dell'evento hover, appare una caption (vengono utilizzate le funzioni JQuery slideUp e slideDown) con un titolo e una descrizione e delle icone per aggiungere e rimuovere immagini o per modificarne titolo e descrizione. Nel caso in cui il portfolio non contenga immagini, ovviamente, appare solo l'icona per aggiungerne; nel caso in cui ne contenga, invece, oltre a quelle già citate appare anche un'altra icona accanto al titolo della sezione "Portfolio", per eliminare l'intero portfolio. L'aggiunta di una nuova immagine e la modifica di una già esistente avviene anche in questo caso tramite il form presente nella modale e modificato dinamicamente.
+[Portfolio]
+In questa sezione l'utente può creare la propria raccolta di immagini che verranno visualizzate all'interno di un carousel. Nel caso in cui la raccolta sia vuota viene visualizzata un'immagine standard. Passando il cursore sull'immagine, al verifcarsi dell'evento hover, appare una caption (vengono utilizzate le funzioni JQuery slideUp e slideDown) con un titolo e una descrizione e delle icone per aggiungere e rimuovere immagini o per modificarne titolo e descrizione. Nel caso in cui il portfolio non contenga immagini, ovviamente, appare solo l'icona per aggiungerne; nel caso in cui ne contenga, invece, oltre a quelle già citate appare anche un'altra icona accanto al titolo della sezione "Portfolio", per eliminare l'intero portfolio. L'aggiunta di una nuova immagine e la modifica di una già esistente avviene anche in questo caso tramite il form presente nella modale e modificato dinamicamente.
 
 
 
