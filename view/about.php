@@ -174,7 +174,7 @@ include_once 'modules/header.php';
                         } else { ?>
                             <div class="carousel-item active">
                                 <img class="d-block w-100" src='assets/picture.webp'>
-                                <div class="carousel-caption d-none d-md-block">
+                                <div class="carousel-caption">
                                     <div class="carousel-row row">
                                         <div class="col-9">
                                             <h5>Clicca + per aggiungere un'immagine</h5>
